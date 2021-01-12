@@ -14,14 +14,14 @@ header-includes:
 
 infrastructure ~ code
 
-PR → container rebuilds, private temp deployment, validate against product main branches
+self-validating PR → container rebuilds, private temp deployment, tests against product main branches
 
 land PR → redeploy to production
 
 :::notes
 - most of us have become really good at self-validating changes to our product code with test gating
 - ideal: want to treat changes to infrastructure alike: submit a PR, builds changed container images
-- in Cockpit team we have some aspects of that, but still quite far from that ideal
+- in Cockpit team we mostly are there for the workloads that run inside the infra, but still quite far from that for changing the infra itself
 - takes a lot of learning of new concepts and infrastructure, needs to offset the cost of classic deploy-watch-rollback
 :::
 
@@ -108,6 +108,40 @@ Test on your fork:
 - Biggest stumbling block there are secrets -- you may need corresponding "forks" on quay.io, or upload the official secrets to your own forked project
 - standard action on the market place for getting interactive ssh into the GitHub VMs
 :::
+
+# Self-validating bots
+
+![](./bots-validate-image-pr.png)
+
+:::notes
+- As mentioned yesterday, bots has all the code that runs *inside* of our tasks
+  containers; invoke tests, update translations, build VM image, etc.
+- by far the most busy CI related project, several changes every day
+- here I made a change to the build script of the rhel-7-9 image
+- I added this little checkbox with a task to rebuild the image, the bot did it, committed the result to the PR, and checked the box
+- This was using the code from the PR
+:::
+
+# Run PR against a bots PR
+
+![](cockpit-test-against-bots-pr.png)
+
+:::notes
+- We can also run a cockpit or other project test against non-master bots with a special test syntax
+- Trigger the test, and only land the bots PR on success
+:::
+
+# Self-maintaining bots
+
+![](./bots-contributions.png)
+
+:::notes
+- fun fact: the biggest contributor to bots by a wide margin is.. the bots
+- bulk is automatic image refreshes, triggering all affected tests
+- we could fully automate their landing, but we like to press green buttons!
+- more often than you'd think these have test failures due to OS changes/regressions
+:::
+
 
 # Updates to deployed infrastructure
 
