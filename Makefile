@@ -1,6 +1,12 @@
+all: cyborg-infra-day-1.pdf cyborg-infra-day-2.pdf
+
 cyborg-infra-day-1.pdf: cyborg-infra-day-1.md
 	pandoc -t beamer -o $@ $<
-	sed '/setbeameroption/ s/{.*notes/{show only notes/' cyborg-infra-day-1.md | pandoc -t beamer -o cyborg-infra-day-1-notes.pdf -
+	sed '/setbeameroption/ s/{.*notes/{show only notes/' $< | pandoc -t beamer -o cyborg-infra-day-1-notes.pdf -
+
+cyborg-infra-day-2.pdf: cyborg-infra-day-2.md
+	pandoc -t beamer -o $@ $<
+	sed '/setbeameroption/ s/{.*notes/{show only notes/' $< | pandoc -t beamer -o cyborg-infra-day-2-notes.pdf -
 
 clean:
 	rm -f cyborg-infra-*.pdf
@@ -9,7 +15,4 @@ clean:
 deps:
 	which pandoc || sudo dnf install -y pandoc texlive-beamer texlive-latex-bin texlive-collection-fontsrecommended texlive-hyphen-german texlive-hyphen-english texlive-dehyph texlive-fancyhdr texlive-dinbrief texlive-german texlive-a4wide texlive-ulem
 
-upload: cyborg-infra.pdf
-	scp 'cyborg-infra-day-\*.pdf' 'cyborg-infra-day-\*-notes.pdf' piware.de:www/www/docs/
-
-.PHONY: deps clean upload
+.PHONY: deps clean
