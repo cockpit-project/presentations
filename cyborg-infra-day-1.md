@@ -9,16 +9,20 @@ header-includes:
  - \setbeameroption{hide notes}
 ...
 
-# Cockpit what?
+# Cockpit Team
+
+![screenshot](./cockpit-storage.png)\ 
 
 - Interactive Server admin web interface
-- Included in all major distros
-- Requires infrastructure for testing, releasing, ...
+- Included in all major distros, uses over 100 OS APIs
+- 7 team members
+- Automated tests, releases, npm/translation updates, VM/container image refreshes
 
 :::notes
-- Conceptually: Linux session running in a web browser; technically very similar to ssh/VT/GNOME login
-- Tool for experimenting, learning, troubleshooting, and doing infrequent tasks
-- Infrastructure: for testing, releasing, translating, updating images, and any other tasks
+- Conceptually: Linux session running in a web browser; moral equivalent of what GNOME is on a desktop
+- talks to > 100 system APIs, times > 10 supported releases → moving target, things break all the time
+- small team, heavily dependent on infrastructure
+- automated testing, releasing, code hygiene, updating VM and container images
 :::
 
 # Infrastructure principles
