@@ -43,29 +43,22 @@ Automated deployment → scalable, recoverable, ~~bus factor 1~~
 - Deployed using publicly available ansible scripts (credentials of course are not public :D)
 :::
 
-<!-- TODO maybe pull this slide out in to two? One that says which infra we use, and another which details what we run on each ? -->
 # Which infrastructure exactly?
 
-- GitHub workflows for all tasks except testing
-- CentOS CI openshift cluster
-- e2e cluster, system template units
-- AWS
+- GitHub workflows for all non-KVM tasks
+- CentOS CI: OpenShift
+- bos.e2e: systemd-controlled docker
+- AWS: on-demand, \$\$\$, systemd-controlled podman
 
 :::notes
 - GitHub's infra is unlimited, free, zero admin cost, high-level SPOF (if GH goes down we have no project anyway)
-- To run tests we need kvm access and internal network access depending on the
-  image, so those are not done by GitHub infrastructure
-- CentOS CI ocp: powerful, free, no internal tests; replication controllers on multiple nodes
-- e2e cluster:
-  - very powerful but (increasingly) difficult to maintain (rhel 7 → rhel 8)
-  - able to run internal tests
-  - hosts image server
-  - systemd autorestart controlled docker instance; 10 nodes
-- AWS:
-  - image server backup in case e2e goes down
-  - logging sink
-  - tests fallback
-  - fully automated using ansible, but pricey
+- GitHub: releases, npm/translation updates, tracking of OS regressions, container refreshes
+- tests need kvm access and internal network access depending on the tested OS, so those are not done on GitHub
+- CentOS CI ocp: powerful, free, many nodes; no internal tests; RCs
+- e2e: 10 real-iron powerful machines; internal tests and RHEL/Windows image store
+- … difficult to maintain (RHEL 7, Satellite); systemd autorestart controlled docker instances
+- AWS: on-demand test fallback in case e2e goes down; permanent image server backup and log store
+- … fully automated using Ansible, but pricey (\$100/day)
 - Always prospecting for new infrastructure :)
 :::
 
