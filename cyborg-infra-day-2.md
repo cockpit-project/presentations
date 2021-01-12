@@ -103,7 +103,7 @@ Test on your fork:
 :::notes
 - Almost trivial, just for completeness
 - No persistent deployment for GitHub; this "serverless" architecture avoids the whole initial problem
-- Anyone can test changes on their own project fork, assuming that the workflow
+- Anyone can test changes on their own project fork
 - the two real-life examples are clickable links, if you want to peek into how that looks like
 - Biggest stumbling block there are secrets -- you may need corresponding "forks" on quay.io, or upload the official secrets to your own forked project
 - standard action on the market place for getting interactive ssh into the GitHub VMs
