@@ -62,21 +62,34 @@ Automated deployment → scalable, recoverable, ~~bus factor 1~~
 - Always prospecting for new infrastructure :)
 :::
 
-<!-- TODO Not sure i got the image conversion right -->
-# ![event flow](event-flow.pdf)
+# Event flow for tests
+
+![event flow](test-event-flow.png){height=95%}
 
 :::notes
-- webhook → AMQP: webhook is just single instance, but auto-recovers through cold PR/issue scanning (github is single source of truth)
-- SPOF: centosci for the webhook/amqp
-- weak:
-  - test logs (just on one server per cloud)
-  - detection/prevention/infra logging (journal/k8s), but has not been a big enough pain point in part due to reproducibility of queue state
-  - no metrics, little alerting (email on bots crash)
-- strong:
-  - mentioned reproducibility and portability
-  - platform agnostic work queue
-  - deployment with public ansible scripts (not 100% automated because imo that would be github PR merge -> deploy main branch)
+- starting point: GitHub event: something happens, like open PR; calls URL in your infra with JSON payload
+- ephemeral, translate to work queue: AMQP; very simple to use, robust, small, atomic, transactional
+- that is done by webhook container (simple Python script)
+- webhook is just single instance on CentOS CI; auto-recovers through PR/issue scanning (github is single source of truth)
+- thus we can deal with few hours downtime, but not with days
+- dozens of worker bots on various clouds connect to AMQP, grab next task, ack it after task is done, logs stored, and GitHub status updated
 :::
+
+# Strong aspects of our CI
+
+TODO
+
+ - mentioned reproducibility and portability
+ - platform agnostic work queue
+ - deployment with public ansible scripts (not 100% automated because imo that would be github PR merge -> deploy main branch)
+
+# Weak aspects of our CI
+
+TODO
+
+ - test logs (just on one server per cloud)
+ - detection/prevention/infra logging (journal/k8s), but has not been a big enough pain point in part due to reproducibility of queue state
+ - no metrics, little alerting (email on bots crash)
 
 # Challenges
 - test logging and artifacts
