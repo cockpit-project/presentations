@@ -62,11 +62,33 @@ Automated deployment → scalable, recoverable, ~~bus factor 1~~
 - Always prospecting for new infrastructure :)
 :::
 
+# Event flow for releases
+
+```sh
+$ git tag -s -m '123
+
+- cool new feature A
+- fix heisenberg compensator on Fedora (rhbz#1234)
+'
+```
+
+→ [.github/workflows/release.yml](https://github.com/cockpit-project/cockpit/blob/master/.github/workflows/release.yml) runs release container
+
+→ GitHub release, Fedora dist-git+koji+bodhi, COPR, DockerHub, docs on cockpit home page
+
+:::notes
+- Exlain a bit *what* we run on the infra; first example is releases
+- minimized human work: summarize news, push signed tag, everything else is fully automated; plus blog post
+- pushing tag triggers release workflow
+- runs release container; looks at "cockpituous" script of the particular project, which controls what/where exactly to release
+:::
+
 # Event flow for tests
 
 ![event flow](test-event-flow.png){height=95%}
 
 :::notes
+- tests infra is more complicated, no GH workflows
 - starting point: GitHub event: something happens, like open PR; calls URL in your infra with JSON payload
 - ephemeral, translate to work queue: AMQP; very simple to use, robust, small, atomic, transactional
 - that is done by webhook container (simple Python script)
