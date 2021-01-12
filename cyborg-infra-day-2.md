@@ -6,6 +6,7 @@ author:
 email: mpitt@redhat.com, sraymaek@redhat.com
 theme: Singapore
 header-includes:
+ - \hypersetup{colorlinks=true}
  - \setbeameroption{hide notes}
 ...
 
@@ -91,9 +92,9 @@ on:
 
 Test on your fork:
 
-- [cockpit-ostree npm-update example](https://github.com/cockpit-project/cockpit-ostree/pull/154)
+- example: [cockpit-ostree npm-update](https://github.com/cockpit-project/cockpit-ostree/pull/154)
 
-- [homepage docs auto-update example](https://github.com/cockpit-project/cockpit-project.github.io/pull/364)
+- example: [homepage docs auto-update](https://github.com/cockpit-project/cockpit-project.github.io/pull/364)
 
 [Interactive SSH for debugging](https://github.com/mxschmitt/action-tmate):
 
@@ -106,4 +107,23 @@ Test on your fork:
 - the two real-life examples are clickable links, if you want to peek into how that looks like
 - Biggest stumbling block there are secrets -- you may need corresponding "forks" on quay.io, or upload the official secrets to your own forked project
 - standard action on the market place for getting interactive ssh into the GitHub VMs
+:::
+
+# Updates to deployed infrastructure
+
+\qquad \qquad \qquad \qquad ![](./tools.pdf){width=12%} \qquad \qquad ![](./stethoscope.pdf){width=12%}
+
+Simple revert on [quay.io tag history](https://quay.io/repository/cockpit/tasks?tab=history):
+
+![](./quay-tag-history.png){width=80%}
+
+:::notes
+- anything that touches our deployed infrastructure has no particular magic
+- these are farthest away from that goal, fortunately also rare
+- updating tasks container: send PR, build/push/deploy it, trigger/wait for some representative test runs, watch out for regressions
+- we can run the new container locally or on the infra and do a smoke test
+- quay.io offers a nice and simple way to revert a tag on the web UI (easier than on the CLI)
+- similar situation with changes to kubernetes resources, Ansible scripts, etc.
+- we don't have sharding of our infra and per-developer tenants
+- so we usually deploy right to production and roll back on failure
 :::
