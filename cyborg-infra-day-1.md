@@ -1,5 +1,5 @@
 ---
-title: Cockpit infrastructure
+title: Cockpit Infrastructure
 subtitle:
 author:
  - Martin Pitt, Sanne Raymaekers
@@ -25,15 +25,21 @@ header-includes:
 - automated testing, releasing, code hygiene, updating VM and container images
 :::
 
-# Infrastructure principles
+# Our Automation Principles
 
-- Tasks run on infrastructure are reproducible locally
-- Portable infrastructure easy to deploy in different (cloud) environments
-- Containers facilitate this
+\qquad \qquad \qquad \qquad ![container](./container.pdf){width=12%} \qquad \qquad ![no magic infra](./no-magic.pdf){width=12%}\ 
+
+Containerize everything → simple and safe to run locally
+
+No magic infrastructure → reproducible, cloud portability
+
+Automated deployment → scalable, recoverable, ~~bus factor 1~~
 
 :::notes
-- Removes a lot of the magic as the tools used are the same locally and remotely
+- Formula: Containerize everything plus no magic infrastructure
+- Humans first: Make it simple and enjoyable to locally hack on tests, automation, CI
 - Containers are easy to reproduce, easy to run locally and on different cloud platforms
+- CI/CD uses the exact same containers and commands, just more powerful
 - Deployed using publicly available ansible scripts (credentials of course are not public :D)
 :::
 
