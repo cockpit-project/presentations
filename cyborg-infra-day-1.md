@@ -123,3 +123,18 @@ TODO
 - e2e machines are ever more difficult to keep running; need well-maintained internal infra
 - hard to find public infra with /dev/kvm: Travis for a while, but they stopped having free plans
 :::
+
+# Links/Documentation
+- [SOURCE/groups/public/cockpit/ cockpit_wiki/cockpit_ci_resources](https://source.redhat.com/groups/public/cockpit/cockpit_wiki/cockpit_ci_resources)
+- [github.com/cockpit-project/cockpituous/](https://github.com/cockpit-project/cockpituous/)
+- secrets in internal CEE GitLab repo, only accessible to a few team members
+- [github.com/cockpit-project/bots](https://github.com/cockpit-project/bots)
+
+:::notes
+- finally, where can you look at our stuff and steal or contribute
+- top-level document on the source, describes available internal and external infra, lots of pointers
+- public cockpituous repo has all our infra automation (Ansible) and most of our containers
+- secrets like Fedora password, GitHub orCOPR token are in a very restricted internal CEE GitLab repo
+- bots is the code that runs inside containers; grab AMQP work queue item, invoke test, update
+  translations, build VM image
+:::
