@@ -12,7 +12,7 @@ header-includes:
 
 # Cockpit Team
 
-![screenshot](./cockpit-storage.png)\ 
+![](./cockpit-storage.png)
 
 - Interactive Server admin web interface
 - Included in all major distros, uses over 100 OS APIs
@@ -28,7 +28,7 @@ header-includes:
 
 # Our Automation Principles
 
-\qquad \qquad \qquad \qquad ![container](./container.pdf){width=12%} \qquad \qquad ![no magic infra](./no-magic.pdf){width=12%}\ 
+\qquad \qquad \qquad \qquad ![](./container.pdf){width=12%} \qquad \qquad ![](./no-magic.pdf){width=12%}
 
 Containerize everything → simple and safe to run locally
 
@@ -86,7 +86,7 @@ $ git tag -s -m '123
 
 # Event flow for tests
 
-![event flow](test-event-flow.png){height=95%}
+![](test-event-flow.png){height=95%}
 
 :::notes
 - tests infra is more complicated, no GH workflows
