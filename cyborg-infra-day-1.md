@@ -99,28 +99,33 @@ $ git tag -s -m '123
 
 # Strong aspects of our CI
 
-TODO
+- reproducible, portable
+- platform agnostic work queue
+- deployment only through Ansible
+- fully automated releases
+- separate changes in our code from changes in OSes
 
- - mentioned reproducibility and portability
- - platform agnostic work queue
- - deployment with public ansible scripts (not 100% automated because imo that would be github PR merge -> deploy main branch)
+:::notes
+- make use of hybrid cloud; harness lots of powerful resources whereever we can get them
+- robust and simple work queue (Jenkins is magnitudes more complicated, brittle, harder to maintain and use)
+- Intro mentioned combinatorial explosion of OSes times APIs; we are everybody's OS regression test
+- became good at isolating our changes from ever-changing/regressing OSes around us; offline tests against static VMs
+- fully automatic tracking of OS regressions
+:::
 
-# Weak aspects of our CI
+# Weak aspects/challenges of our CI
 
-TODO
-
- - test logs (just on one server per cloud)
- - detection/prevention/infra logging (journal/k8s), but has not been a big enough pain point in part due to reproducibility of queue state
- - no metrics, little alerting (email on bots crash)
-
-# Challenges
-- test logging and artifacts
-- maintaining e2e machines
+- arcane test logging and artifacts
+- precarious e2e machines
+- no monitoring/alerts
 - hard to find public infra with /dev/kvm
 
 :::notes
-- our test logging/artifact infra is very arcane, not portable, too much logic; want to move to standard infra (http post, loki, etc.)
-- e2e machines are ever more difficult to keep running; need well-maintained internal infra
+- our test logging/artifact infra is very arcane, too much custom logic; want to move to standard infra (http post, s3, loki, etc.)
+- test log servers are SPOF
+- e2e machines are ever more difficult to keep running; old and no automation around Satellite; need well-maintained internal infra
+- use host journal and k8s container logs for investigating failures; no automated monitoring (except for email on bot crash), notification, or prevention
+- has not been a big enough pain point in part due to reproducibility of queue state
 - hard to find public infra with /dev/kvm: Travis for a while, but they stopped having free plans
 :::
 
