@@ -6,6 +6,7 @@ author:
 email: mpitt@redhat.com, sraymaek@redhat.com
 theme: Singapore
 header-includes:
+ - \hypersetup{colorlinks=true}
  - \setbeameroption{hide notes}
 ...
 
