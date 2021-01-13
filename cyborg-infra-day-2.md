@@ -147,7 +147,6 @@ Test on your fork:
 - more often than you'd think these have test failures due to OS changes/regressions so constant image refreshes are very useful
 :::
 
-
 # Updates to deployed infrastructure
 
 \qquad \qquad \qquad \qquad ![](./tools.pdf){width=12%} \qquad \qquad ![](./stethoscope.pdf){width=12%}
@@ -166,4 +165,14 @@ Simple revert on [quay.io tag history](https://quay.io/repository/cockpit/tasks?
 - similar situation with changes to kubernetes resources, Ansible scripts, etc.
 - we don't have sharding of our infra and per-developer tenants
 - so we usually deploy right to production and roll back on failure
+:::
+
+# Links/Documentation
+- [source.redhat.com/groups/public/cockpit/ cockpit_wiki/cockpit_ci_resources](https://source.redhat.com/groups/public/cockpit/cockpit_wiki/cockpit_ci_resources)
+- [github.com/cockpit-project/cockpituous/](https://github.com/cockpit-project/cockpituous/)
+- secrets in internal CEE GitLab repo, only accessible to a few team members
+- [github.com/cockpit-project/bots](https://github.com/cockpit-project/bots)
+- `#cockpit` on Freenode, [cockpit-devel@lists.fedorahosted.org](https://lists.fedorahosted.org/archives/list/cockpit-devel@lists.fedorahosted.org/)
+
+:::notes
 :::
