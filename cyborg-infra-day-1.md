@@ -7,7 +7,7 @@ email: mpitt@redhat.com, sraymaek@redhat.com
 theme: Singapore
 header-includes:
  - \hypersetup{colorlinks=true}
- - \setbeameroption{show notes}
+ - \setbeameroption{hide notes}
 ...
 
 # Cockpit Team
