@@ -22,11 +22,11 @@ land PR → redeploy to production
 - most of us have become really good at self-validating changes to our product
   code (so not infra code) with test gating
 - ideal: want to treat changes to infrastructure alike: submit a PR, builds and
-  tests changed container images
+  tests changed container images => you want fully automated luxury ci/cd for your ci/cd
 - in Cockpit team we mostly are there for the workloads that run inside the
   infra, but still quite far from that for changing the infra itself (meaning
   containers and deployment via ansible to openshift etc...)
-- takes a lot of learning of new concepts and infrastructure, needs to offset the cost of classic deploy-watch-rollback
+- for cockpit infra it takes a lot of learning of new concepts and infrastructure, needs to offset the cost of classic deploy-watch-rollback
 :::
 
 # Updating unit test container
@@ -156,8 +156,7 @@ Simple revert on [quay.io tag history](https://quay.io/repository/cockpit/tasks?
 ![](./quay-tag-history.png){width=80%}
 
 :::notes
-- anything that touches our deployed infrastructure has no particular magic
-- these are farthest away from that goal, fortunately also rare
+- changes to the deployed infra itself are farthest away from that goal, fortunately also rare
 - updating tasks container: send PR, build/push/deploy it, trigger/wait for some representative test runs, watch out for regressions
 - we can run the new container locally or on the infra and do a smoke test
 - usually we can run the new container within the current production environment without taking it down, still not a great workflow however
