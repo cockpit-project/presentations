@@ -1,0 +1,13 @@
+# render this on https://www.websequencediagrams.com/
+GitHub -> webhook pod: webhook JSON payload
+webhook pod-> RabbitMQ pod: raw JSON payload\n→ webhook queue
+
+webhook pod-> GitHub: Finish HTTP webhook request
+RabbitMQ pod-> tasks pod: pick from webhook queue
+note left of tasks pod: interpret JSON into command
+tasks pod-> RabbitMQ pod: put command into tasks queue
+
+RabbitMQ pod-> tasks pod: \npick from tasks queue
+tasks pod-> GitHub: update PR to "in progress"
+note left of tasks pod: execute command
+tasks pod-> GitHub: update PR to "pass" or "fail"
