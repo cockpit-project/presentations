@@ -7,7 +7,7 @@ date: Cyborg Infrastructure Seminar 2022
 theme: Singapore
 header-includes:
  - \hypersetup{colorlinks=true}
- - \setbeameroption{show notes}
+ - \setbeameroption{hide notes}
 ...
 
 # Workload overview
