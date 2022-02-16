@@ -80,7 +80,7 @@ secret key on cockpit repo:
   - uses: actions/checkout@v2
     with:
       repository: ${{ github.repository }}-weblate
-      ssh-key: ${{ secrets.WEBLATE_DEPLOY_KEY }}
+      ssh-key: ${{ secrets.DEPLOY_KEY }}
 ```
 
 
