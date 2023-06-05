@@ -42,23 +42,41 @@ header-includes:
   multiplexed JSON stream.
 :::
 
-# Demo: Current cockpit
+# Demo: Fedora Server
 
-TODO: flesh out
+TODO: flesh out command line demo
 
 :::notes
 - Connect to fedsrv with client, explain Client flatpak and cockpit UI
 - Show installed cockpit rpms on fedsrv
 - Run cockpit-bridge command line for running date and read a file
-- Connect to "fresh cloud instance" c9s, get "no bridge found", sob
+:::
+
+# Demo: Connect to a CentOS 9 Stream cloud instance
+
+:::notes
+- Connect to "fresh cloud instance" `c9s`, get "no bridge found", sob
 :::
 
 # Making the bridge portable
 
- - Be like Ansible: SSH + Python
- - Cloud instances, production machines
+![this but a scratch](./but-a-scratch.jpg) \
 
-TODO: flesh out
+:::notes
+- What can we do here? We surely must have the bridge pre-installed somehow. And
+  it must be in C to be performant and be able to talk to D-Bus, sockets and such.
+- Lis: We could rewrite the bridge in Python! -- Whaat? No, that can never
+  work. It's too slow, and the C bridge is thousands of lines, it'll be too
+  hard. And how would we even get that to the remote machine?
+- And besides, what has Python ever done for us? ubiquitous, portable,
+  performant with asyncio, bindable with ctypes, much easier/faster to develop
+:::
+
+
+# Goals
+
+ - Be like Ansible: SSH + Python
+ - Cloud instances, production machines, other distributions
 
 :::notes
 - TODO: explain; goals, Python
@@ -72,8 +90,8 @@ TODO: flesh out
 TODO: flesh out
 
 :::notes
-- Remember that c2 machine? Let's start our alpha version of cockpit's flatpak with the Python bridge
-- Connect to c2, watch jaws drop
+- Remember that c9s machine? Let's start our alpha version of cockpit's flatpak with the Python bridge
+- Connect to c9s, watch jaws drop
 :::
 
 # Rollout plan
