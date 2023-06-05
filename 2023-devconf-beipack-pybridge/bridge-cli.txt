@@ -1,0 +1,6 @@
+
+{"command": "open", "channel": "ping1", "payload": "stream", "spawn": ["ping", "-c3", "localhost"]}
+---
+
+{"command": "open", "channel": "m", "payload": "metrics1", "source": "internal", "interval": 1000, "metrics": [{ "name": "cpu.basic.user", "derive": "rate" }]}
+---

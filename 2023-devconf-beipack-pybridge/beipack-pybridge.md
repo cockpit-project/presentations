@@ -17,7 +17,7 @@ header-includes:
 
 :::notes
 - For this talk we assume a basic familiarity with Cockpit
-- If you have never seen it, the short-short version. We'll also do demos
+- If you have never seen it, the short-short version.
 - Conceptually: Linux session running in a web browser; moral server equivalent of what GNOME is on a desktop
 - Tool for experimenting, learning, troubleshooting, and doing infrequent tasks
 :::
@@ -44,12 +44,14 @@ header-includes:
 
 # Demo: Fedora Server
 
-TODO: flesh out command line demo
-
 :::notes
 - Connect to fedsrv with client, explain Client flatpak and cockpit UI
-- Show installed cockpit rpms on fedsrv
-- Run cockpit-bridge command line for running date and read a file
+- Show `rpm -qa cockpit`, installed by default
+- Put myself in the position of the cockpit web UI; connect via SSH to fedsrv and run the bridge
+- `cockpit-bridge --interact=---`, with bridge-cli.txt
+- We can run a program with arguments, for example ping; we get the chunks of output, and eventually an exit code
+- bridge has many channel types, for the file system, sockets, D-Bus, inotify, or metrics (second demo)
+- roughly machine readable version of bash
 :::
 
 # Demo: Connect to a CentOS 9 Stream cloud instance
@@ -63,12 +65,13 @@ TODO: flesh out command line demo
 ![this but a scratch](./but-a-scratch.jpg) \
 
 :::notes
-- What can we do here? We surely must have the bridge pre-installed somehow. And
-  it must be in C to be performant and be able to talk to D-Bus, sockets and such.
+- What can we do here? We surely must have the bridge pre-installed somehow. We
+  wrote it in C to be performant and be able to talk to low-level system
+  interfaces.
 - Lis: We could rewrite the bridge in Python! -- Whaat? No, that can never
   work. It's too slow, and the C bridge is thousands of lines, it'll be too
   hard. And how would we even get that to the remote machine?
-- And besides, what has Python ever done for us? ubiquitous, portable,
+- And besides, what has the Python empire ever done for us? ubiquitous, portable,
   performant with asyncio, bindable with ctypes, much easier/faster to develop
 :::
 
@@ -77,17 +80,21 @@ TODO: flesh out command line demo
 
  - Be like Ansible: SSH + Python
  - Cloud instances, production machines, other distributions
+ - "Inverse" web app
 
 :::notes
-- TODO: explain; goals, Python
-- transition to Lis: to do this, we need a couple of technologies to pull this off
+- Lis convinced me; model this after Ansible and reduce assumptions to the
+  minimal: Python with only included batteries, and SSH connection to managed
+  machine
+- Get a foot into the door of pretty much any machine out there
+- Still need that feat of getting the bridge to the remote machine; Lis has
+    some great technology to pull this off
+- time check: 7'30 mins
 :::
 
 # TODO Lis part: beipack, ferny, etc.
 
 # Demo: Portable bridge
-
-TODO: flesh out
 
 :::notes
 - Remember that c9s machine? Let's start our alpha version of cockpit's flatpak with the Python bridge
@@ -96,7 +103,19 @@ TODO: flesh out
 
 # Rollout plan
 
-TODO
+ * Debian experimental
+ * Fedora and C9S/RHEL 9 devel
+ * Debian stable and RHEL 8 remain on old bridge
+
+:::notes
+- We've been developing this in the main branch of cockpit with a configure option
+- Down to one critical regression and a few unstable tests, we want to release it soon
+- We most probably start with Fedora rawhide and Debian experimental
+- Soon enough Fedora 38 and RHEL 9 devel
+- Don't switch long-term support releases, such as Debian stable, Ubuntu LTS, RHEL 8
+- TODO: flatpak
+:::
+
 
 # Q & A
 
