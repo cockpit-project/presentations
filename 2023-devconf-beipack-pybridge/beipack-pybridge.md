@@ -47,11 +47,10 @@ header-includes:
 TODO: flesh out
 
 :::notes
-- Prepare two VMs `c1` and `c2`; c1 with cockpit pre-installed, c2 without
-- Connect to c1 with client, explain Client flatpak and cockpit UI
-- Show installed cockpit rpms on c1
-- Connect to c2, get "no bridge found", sob
+- Connect to fedsrv with client, explain Client flatpak and cockpit UI
+- Show installed cockpit rpms on fedsrv
 - Run cockpit-bridge command line for running date and read a file
+- Connect to "fresh cloud instance" c9s, get "no bridge found", sob
 :::
 
 # Making the bridge portable
