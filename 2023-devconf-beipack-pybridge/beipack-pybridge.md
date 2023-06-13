@@ -87,8 +87,10 @@ header-includes:
   minimal: Python with only included batteries, and SSH connection to managed
   machine
 - Get a foot into the door of pretty much any machine out there
-- Still need that feat of getting the bridge to the remote machine; Lis has
-    some great technology to pull this off
+- Still need that feat of getting the bridge to the remote machine; normally a
+    server sends a web app to the browser, but here we need to send the backend
+    code to the server machine, sort of an inverse web app
+- Lis has some great technology to pull this off
 - time check: 7'30 mins
 :::
 
@@ -103,14 +105,14 @@ header-includes:
 
 # Rollout plan
 
- * Debian experimental
- * Fedora and C9S/RHEL 9 devel
- * Debian stable and RHEL 8 remain on old bridge
+ * now: Fedora Rawhide, Debian unstable
+ * soon: Fedora 38, C9S/RHEL 9 devel
+ * never: Debian stable and RHEL 8
 
 :::notes
 - We've been developing this in the main branch of cockpit with a configure option
-- Down to one critical regression and a few unstable tests, we want to release it soon
-- We most probably start with Fedora rawhide and Debian experimental
+- Fixed last critical regression last week, but still a few unstable tests
+- We start with Fedora rawhide and Debian unstable
 - Soon enough Fedora 38 and RHEL 9 devel
 - Don't switch long-term support releases, such as Debian stable, Ubuntu LTS, RHEL 8
 - TODO: flatpak
