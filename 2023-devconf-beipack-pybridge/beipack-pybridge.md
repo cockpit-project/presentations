@@ -45,8 +45,8 @@ header-includes:
 # Demo: Fedora Server
 
 :::notes
-- Connect to fedsrv with client, explain Client flatpak and cockpit UI
-- Show `rpm -qa cockpit`, installed by default
+- Connect to fedsrv with stable client, explain Client flatpak and cockpit UI
+- Show `rpm -qa cockpit` in Terminal, installed by default
 - Put myself in the position of the cockpit web UI; connect via SSH to fedsrv and run the bridge
 - `cockpit-bridge --interact=---`, with bridge-cli.txt
 - We can run a program with arguments, for example ping; we get the chunks of output, and eventually an exit code
@@ -88,8 +88,8 @@ header-includes:
   machine
 - Get a foot into the door of pretty much any machine out there
 - Still need that feat of getting the bridge to the remote machine; normally a
-    server sends a web app to the browser, but here we need to send the backend
-    code to the server machine, sort of an inverse web app
+  server sends a web app to the browser, but here we need to send the backend
+  code to the server machine, sort of an inverse web app
 - Lis has some great technology to pull this off
 - time check: 7'30 mins
 :::
@@ -101,21 +101,21 @@ header-includes:
 :::notes
 - Remember that c9s machine? Let's start our alpha version of cockpit's flatpak with the Python bridge
 - Connect to c9s, watch jaws drop
+- More pages available, like podman; show magic bridge in ps ux
 :::
 
 # Rollout plan
 
- * now: Fedora Rawhide, Debian unstable
+ * now: Fedora Rawhide, Debian unstable, Flatpak beta
  * soon: Fedora 38, C9S/RHEL 9 devel
- * never: Debian stable and RHEL 8
+ * never: Debian stable, Ubuntu 22.04 LTS, RHEL 8
 
 :::notes
 - We've been developing this in the main branch of cockpit with a configure option
 - Fixed last critical regression last week, but still a few unstable tests
-- We start with Fedora rawhide and Debian unstable
-- Soon enough Fedora 38 and RHEL 9 devel
+- Launched to Fedora rawhide, Debian unstable three days ago
+- Soon enough Fedora 38 and C9s/RHEL 9 devel
 - Don't switch long-term support releases, such as Debian stable, Ubuntu LTS, RHEL 8
-- TODO: flatpak
 :::
 
 
