@@ -4,6 +4,14 @@ $(NAME).pdf: $(NAME).md
 	pandoc -t beamer -o $@ $<
 	sed '/setbeameroption/ s/{.*notes/{show only notes/' $< | pandoc -t beamer -o $(NAME)-notes.pdf
 
+.PHONY: app
+app:
+	+$(MAKE) -C app
+
+install-beipack:
+	sudo dnf install -y python3-setuptools python3-wheel
+	sudo pip install --no-index --no-build-isolation -r app/requirements.txt
+
 bots:
 	git clone https://github.com/cockpit-project/bots/
 
