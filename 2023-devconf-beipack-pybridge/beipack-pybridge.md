@@ -106,9 +106,10 @@ header-includes:
 
 # Rollout plan
 
- * now: Fedora Rawhide, Debian unstable, Flatpak beta
+ * now: Fedora Rawhide, Debian unstable, Arch, Flatpak beta
  * soon: Fedora 38, C9S/RHEL 9 devel
  * never: Debian stable, Ubuntu 22.04 LTS, RHEL 8
+ * but all these OSes supported as connection targets
 
 :::notes
 - We've been developing this in the main branch of cockpit with a configure option
