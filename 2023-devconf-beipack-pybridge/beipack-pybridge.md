@@ -45,7 +45,9 @@ header-includes:
 # Demo: Fedora Server
 
 :::notes
-- Connect to fedsrv with stable client, explain Client flatpak and cockpit UI
+- This is the Cockpit Client flatpak, probably the easiest way to consume cockpit if your desktop runs Linux
+- Can connect to any ssh target
+- Connect to fedsrv with stable client
 - Show `rpm -qa cockpit` in Terminal, installed by default
 - Put myself in the position of the cockpit web UI; connect via SSH to fedsrv and run the bridge
 - `cockpit-bridge --interact=---`, with bridge-cli.txt
@@ -94,7 +96,7 @@ header-includes:
 - time check: 7'30 mins
 :::
 
-# TODO Lis part: beipack, ferny, etc.
+# Lis: beipack demo
 
 # Demo: Portable bridge
 
