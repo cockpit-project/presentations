@@ -99,7 +99,7 @@ header-includes:
 # Demo: Portable bridge
 
 :::notes
-- Remember that c9s machine? Let's start our alpha version of cockpit's flatpak with the Python bridge
+- Remember that c9s machine? Let's start our beta version of cockpit's flatpak with the Python bridge
 - Connect to c9s, watch jaws drop
 - More pages available, like podman; show magic bridge in ps ux
 :::
