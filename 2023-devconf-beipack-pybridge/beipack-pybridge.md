@@ -75,28 +75,158 @@ header-includes:
   hard. And how would we even get that to the remote machine?
 - And besides, what has the Python empire ever done for us? ubiquitous, portable,
   performant with asyncio, bindable with ctypes, much easier/faster to develop
+- Lis: You know, it's funny you mention this cockpit-bridge thing, because I've
+  been working on this little program called hello world.  It's really similar
+  to the bridge in a lot of ways.  I wrote it in Python and it works great!
+  And you can run it on places where it's not installed!
+- Martin: srsly?  How can you run something that's not installed?
+- Lis: Have you heard of this world wide web thing?  People are running stuff
+  all the time without installing it.
 :::
 
+# What's a web app?
 
-# Goals
-
- - Be like Ansible: SSH + Python
- - Cloud instances, production machines, other distributions
- - "Inverse" web app
+- Server delivers the app to the client and the client runs it.
+- HTTP + Javascript/CSS/HTML.
+- Interaction with the user
 
 :::notes
-- Lis convinced me; model this after Ansible and reduce assumptions to the
-  minimal: Python with only included batteries, and SSH connection to managed
-  machine
-- Get a foot into the door of pretty much any machine out there
-- Still need that feat of getting the bridge to the remote machine; normally a
-  server sends a web app to the browser, but here we need to send the backend
-  code to the server machine, sort of an inverse web app
-- Lis has some great technology to pull this off
-- time check: 7'30 mins
+The web is an ubiquitous protocol (HTTP) paired with an ubiquitous execution
+environment (Javascript + HTML).  The server delivers apps to the client.
 :::
 
-# Lis: beipack demo
+# Reverse the idea
+
+- Clients can deliver applications to servers
+- SSH + Python
+- Interaction with the server OS (via Python standard library).
+
+:::notes
+We've built something around the opposite idea.  An ubiquitous protocol (SSH)
+paired with an ubiquitous execution environment (Python).  The client delivers
+apps to the server.
+
+Same stack as Ansible, which is very widely supported.
+
+How do we do that?
+:::
+
+# beiboot
+
+A tool for turning a Python interpreter into a complex interactive Python program.
+
+The interpreter can be running in a "different environment".
+
+:::notes
+beiboot is a commandline tool and a library for getting a Python program from
+one execution environment to another.  Our motivating usecase was ssh, but
+there's a lot of commands like SSH to get you to a "different environment".
+
+:::
+
+# "Different environments"
+
+A stdin/stdout/stderr connection to a command running somewhere else.
+
+- `ssh machine` ...
+- `sudo` ...
+- `podman exec container` ...
+- `flatpak-spawn --host` ...
+
+:::notes
+All of these commands are basically ways to run another command in a different environment.
+:::
+
+# "Different environments"
+
+A stdin/stdout/stderr connection to a command running somewhere else.
+
+- `ssh machine python3 -i`
+- `sudo python3 -i`
+- `podman exec container python3 -i`
+- `flatpak-spawn --host python3 -i`
+
+:::notes
+And for our purposes, the command in question can be a Python interpreter.
+
+And the nice thing here: you have a Python interpreter running.  stdin, stdout,
+stderr are connected.  It actually doesn't matter where this interpreter is
+running.  You can start typing commands into the interpreter and stuff starts
+happening.
+
+What what about sending a complex Python program?  With multiple files?  Maybe
+multiple packages.  Maybe binary data.
+:::
+
+# beipack
+
+A tool for turning a complex Python program (with libraries, modules, packages,
+data files, etc.) into a single Python script.
+
+Similar in spirit to `zipapp` files, but a bit better for our use case.
+
+:::notes
+beipack is a tool for collecting files in various ways (listed on commandline,
+PEP 517 builds, installed modules, etc) and bundling them together in a Python
+dictionary which is made available via a custom importlib loader.
+
+We originally started with pyz, but it has to be written to the disk first, and
+doesn't fit the model of delivering data purely to the interpreter.
+:::
+
+# Putting it together: Hello World
+
+:::notes
+(demo)
+
+cd app
+show hello.py
+show info.py
+build the beipack (make)
+show the contents of the beipack (xzcat...)
+boot the beipack on local (beipack --xz ...)
+boot the beipack sudo
+boot the beipack ssh
+
+Internally, beiboot sends a stage1 bootloader over to the other side which
+requests the beipack.xz file, decompresses it, and executes it.
+:::
+
+# beiboot + beipack: self-containment
+
+```
+    # beiboot stage1
+    src = lzma.decompress(src_xz)
+    exec(src, {
+        '__name__': '__main__',
+        '__self_source__': src_xz,
+        '__file__': filename})
+```
+
+```
+    # beipack Loader
+    def __init__(self, contents: Dict[str, bytes]):
+        try:
+            contents[__file__] = __self_source__
+        except NameError:
+            pass
+```
+
+:::notes
+This is one of the more magic features of this arrangement, and it's one that's
+important to our usecase.  A beibooted program is capable of self-replication.
+
+The normal idea when using beipack and beiboot is that the beipack of the
+program is created and compressed at build time and stored as package data.
+
+When the program is beibooted on the other machine, we send that beipack to the
+beiboot stage1 and it makes it available to the loader, so it can be loaded
+again by the program, in the same way and sent on to further environments.
+
+That happens for starting the root bridge on Cockpit.  First step: start the
+bridge on the remote machine via ssh.  Second step the remote bridge can start
+a second copy of itself via sudo.
+:::
 
 # Demo: Portable bridge
 
