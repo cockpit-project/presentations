@@ -9,7 +9,7 @@ app:
 	+$(MAKE) -C app
 
 install-beipack:
-	sudo dnf install -y python3-setuptools python3-wheel
+	rpm -q python3-setuptools 2>/dev/null || sudo dnf install -y python3-setuptools python3-wheel
 	sudo pip install --no-index --no-build-isolation -r app/requirements.txt
 
 bots:
