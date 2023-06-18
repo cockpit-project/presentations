@@ -261,6 +261,12 @@ beiboot functionality:
 
 # Q & A
 
+Links:
+
+- [Flatpak install instructions](https://cockpit-project.org/blog/cockpit-294.html)
+- [beipack project](https://github.com/allisonkarlitskaya/beipack)
+- [systemd_ctypes project](https://github.com/allisonkarlitskaya/systemd_ctypes)
+
 Contact:
 
 - `#cockpit` on Fedora Matrix
