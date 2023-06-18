@@ -67,21 +67,20 @@ header-includes:
 ![this but a scratch](./but-a-scratch.jpg) \
 
 :::notes
-- What can we do here? We surely must have the bridge pre-installed somehow. We
-  wrote it in C to be performant and be able to talk to low-level system
-  interfaces.
+- What can we do? have the bridge pre-installed somehow. It's in C to be performant and be able to talk to low-level sys
+  ifaces
 - Lis: We could rewrite the bridge in Python! -- Whaat? No, that can never
-  work. It's too slow, and the C bridge is thousands of lines, it'll be too
-  hard. And how would we even get that to the remote machine?
+  work. too slow, C bridge is thousands of lines, it'll be too
+  hard. And how would we even get that to the remote?
 - And besides, what has the Python empire ever done for us? ubiquitous, portable,
   performant with asyncio, bindable with ctypes, much easier/faster to develop
-- Lis: You know, it's funny you mention this cockpit-bridge thing, because I've
+- Lis: It's funny you mention this cockpit-bridge thing, because I've
   been working on this little program called hello world.  It's really similar
-  to the bridge in a lot of ways.  I wrote it in Python and it works great!
+  to the bridge in a lot of ways.  I wrote it in py and it works great!
   And you can run it on places where it's not installed!
 - Martin: srsly?  How can you run something that's not installed?
-- Lis: Have you heard of this world wide web thing?  People are running stuff
-  all the time without installing it.
+- Lis: Have you heard of this www thing?  People are running stuff all the time
+  without installing it.
 :::
 
 # What's a web app?
@@ -102,18 +101,18 @@ environment (Javascript + HTML).  The server delivers apps to the client.
 - Interaction with the server OS (via Python standard library).
 
 :::notes
-We've built something around the opposite idea.  An ubiquitous protocol (SSH)
-paired with an ubiquitous execution environment (Python).  The client delivers
-apps to the server.
+- We've built something around the opposite idea.  An ubiquitous protocol (SSH)
+  paired with an ubiquitous execution environment (Python).  The client delivers
+  apps to the server.
 
-Same stack as Ansible, which is very widely supported.
+- Same stack as Ansible, which is very widely supported.
 
-How do we do that?
+- How do we do that?
 :::
 
 # beiboot
 
-A tool for turning a Python interpreter into a complex interactive Python program.
+Turn a Python interpreter into a complex interactive Python program.
 
 The interpreter can be running in a "different environment".
 
@@ -177,16 +176,14 @@ doesn't fit the model of delivering data purely to the interpreter.
 # Putting it together: Hello World
 
 :::notes
-(demo)
-
-cd app
-show hello.py
-show info.py
-build the beipack (make)
-show the contents of the beipack (xzcat...)
-boot the beipack on local (beipack --xz ...)
-boot the beipack sudo
-boot the beipack ssh
+- `cd app`
+- show hello.py
+- show info.py
+- build the beipack (make)
+- show the contents of the beipack (xzcat...)
+- boot the beipack on local (beipack --xz ...)
+- boot the beipack sudo
+- boot the beipack ssh
 
 Internally, beiboot sends a stage1 bootloader over to the other side which
 requests the beipack.xz file, decompresses it, and executes it.
