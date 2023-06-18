@@ -235,17 +235,27 @@ a second copy of itself via sudo.
 
 # Rollout plan
 
- * now: Fedora Rawhide, Debian unstable, Arch, Flatpak beta
+Python bridge:
+
+ * now: Fedora Rawhide, Debian unstable, Arch
  * soon: Fedora 38, C9S/RHEL 9 devel
- * never: Debian stable, Ubuntu 22.04 LTS, RHEL 8
- * but all these OSes supported as connection targets
+ * not: Debian stable, Ubuntu 22.04 LTS, RHEL 8
+
+beiboot functionality:
+
+ * now: Flatpak beta
+ * soon: cockpit/ws container
+ * all these OSes supported as connection targets
 
 :::notes
-- We've been developing this in the main branch of cockpit with a configure option
+- We've been developing pybridge in the main branch of cockpit with a configure option
 - Fixed last critical regression last week, but still a few unstable tests
-- Launched to Fedora rawhide, Debian unstable three days ago
+- Launched to Fedora rawhide, Debian unstable, Arch three days ago
 - Soon enough Fedora 38 and C9s/RHEL 9 devel
 - Don't switch long-term support releases, such as Debian stable, Ubuntu LTS, RHEL 8
+- Looking for regression reports
+- remote bridge functionality only in the flatpak for now, and cockpit webservice container soon
+- distro and container world are separate use cases for now, still needs discussion where we want to go there eventually
 :::
 
 
