@@ -110,12 +110,13 @@ consumer `packit.yaml`:
 
 # Q & A
 
-Links:
-
-- [Blog post with details](https://cockpit-project.org/blog/tmt-cross-project-testing.html)
-- [Packit home page](https://packit.dev/)
-
 Contact:
 
 - Email: mpitt@redhat.com
 - `pitti` in `#cockpit` on [Fedora Matrix chat](https://chat.fedoraproject.org/#/room/#cockpit:fedoraproject.org)
+
+\center
+
+[https://cockpit-project.org/blog/tmt-cross-project-testing.html](https://cockpit-project.org/blog/tmt-cross-project-testing.html)
+
+![blog URL QR](./blog-qr.svg){width=45%} \

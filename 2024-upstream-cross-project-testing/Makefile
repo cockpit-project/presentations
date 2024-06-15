@@ -6,6 +6,6 @@ $(NAME).pdf: $(NAME).md
 
 # install the necessary tools to build this presentation
 deps:
-	command -v pandoc || sudo dnf install -y pandoc texlive-beamer texlive-collection-fontsrecommended
+	command -v pandoc || sudo dnf install -y pandoc texlive-beamer texlive-collection-fontsrecommended librsvg2-tools
 
 .PHONY: deps clean
