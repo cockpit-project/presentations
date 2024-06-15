@@ -91,7 +91,7 @@ consumer `packit.yaml`:
 
 - mostly social effort, not technical
 - first [podman regression #19888](https://github.com/containers/podman/pull/19888#issuecomment-1711548343)
-- Cockpit tests run in podman, udisks2, and selinux-policy
+- Cockpit tests run in podman, udisks2, stratis, selinux-policy
 
 \vfill
 
